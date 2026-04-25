@@ -1,0 +1,18 @@
+[package]
+name = "zk_bitcoin_verifier"
+version = "0.1.0"
+edition = "2024_07"
+description = "ZK Bitcoin block and transaction verifier for Starknet"
+license = "Apache-2.0"
+authors = ["AMD"]
+homepage = "https://github.com/amd/zk-bitcoin-verifier"
+repository = "https://github.com/amd/zk-bitcoin-verifier"
+keywords = ["bitcoin", "cairo", "starknet", "zk", "verification"]
+
+[dependencies]
+
+[dev-dependencies]
+cairo_test = "2.17.0"
+
+[cairo]
+enable-gas = false

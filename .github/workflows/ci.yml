@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+env:
+  SCARB_VERSION: "2.17.0"
+
+jobs:
+  cairo-tests:
+    name: Cairo Build & Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Scarb
+        uses: software-mansion/setup-scarb@v1
+        with:
+          scarb-version: ${{ env.SCARB_VERSION }}
+
+      - name: Check formatting
+        run: scarb fmt --check
+
+      - name: Build
+        run: scarb build
+
+      - name: Run tests
+        run: scarb test
+
+  python-tests:
+    name: Python Integration Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install pytest
+
+      - name: Run integration tests
+        run: pytest tests/integration/ -v
