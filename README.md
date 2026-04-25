@@ -63,6 +63,7 @@ make all
 **Python integration tests** (requires Python 3.11+ and pytest):
 
 ```bash
+# Install pytest if you haven't
 pip install pytest
 make py-test
 ```
@@ -157,4 +158,3 @@ pub fn verify_atomic_swap(swap: @AtomicSwap) -> bool
 ## License
 
 Copyright 2024 AMD. Licensed under the [Apache License, Version 2.0](../LICENSE).
-# zk-bitcoin-verifier
