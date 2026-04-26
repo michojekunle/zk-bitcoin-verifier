@@ -21,8 +21,6 @@ Complete documentation for all public functions and types exported by `zk_bitcoi
   - [swap_state](#swap_state)
   - [swap_verifier](#swap_verifier)
 
----
-
 ## Crypto Primitives
 
 ### sha256
@@ -56,8 +54,6 @@ let digest = sha256(array![0x61, 0x62, 0x63]); // SHA-256("abc")
 // expected: 0xba7816bf8f01cfea414140de5dae2ec73b00361bbef0469348423f656bd6e2d
 ```
 
----
-
 #### `sha256d`
 
 ```cairo
@@ -76,8 +72,6 @@ for transaction IDs, block hashes, and Merkle tree nodes.
 **Returns**
 
 `u256` — The double-SHA-256 digest.
-
----
 
 ### secp256k1
 
@@ -135,8 +129,6 @@ Verifies an ECDSA signature over the secp256k1 curve.
 - The recovered point does not match `pubkey`.
 - `pubkey` is the point at infinity.
 
----
-
 #### `secp256k1_recover_pubkey`
 
 ```cairo
@@ -161,8 +153,6 @@ following SEC 1 §4.1.6.
 **Returns**
 
 `Point` — The recovered public key. Returns `Point { x: 0, y: 0 }` on failure.
-
----
 
 ### merkle
 
@@ -190,8 +180,6 @@ Verifies a Merkle inclusion proof using Bitcoin's double-SHA-256 pairing convent
 
 **Note:** An empty `proof` is valid when `leaf == root` (single-element tree).
 
----
-
 #### `merkle_root`
 
 ```cairo
@@ -211,8 +199,6 @@ convention of duplicating the last element when the count is odd.
 
 `u256` — The Merkle root. Returns `0` for an empty list.
 
----
-
 ### field_utils
 
 **Module path:** `zk_bitcoin_verifier::crypto::field_utils`
@@ -225,8 +211,6 @@ pub fn u32_to_felt252(val: u32) -> felt252
 
 Converts a `u32` to a `felt252` field element. This conversion is lossless.
 
----
-
 #### `bytes_to_u256`
 
 ```cairo
@@ -234,8 +218,6 @@ pub fn bytes_to_u256(bytes: Array<u8>) -> u256
 ```
 
 Interprets up to 32 bytes (big-endian) as a `u256`. Returns `0` for an empty array.
-
----
 
 #### `reverse_bytes32`
 
@@ -245,8 +227,6 @@ pub fn reverse_bytes32(val: u256) -> u256
 
 Reverses the 32-byte (256-bit) representation of `val`. Used to convert between
 Bitcoin's little-endian wire format and Cairo's big-endian arithmetic.
-
----
 
 ## Bitcoin Layer
 
@@ -278,8 +258,6 @@ pub fn parse_block_header(raw_bytes: Array<u8>) -> BlockHeader
 
 Deserialises exactly 80 bytes of little-endian wire data into a `BlockHeader`.
 
----
-
 #### `verify_block_header`
 
 ```cairo
@@ -289,8 +267,6 @@ pub fn verify_block_header(header: BlockHeader) -> bool
 Runs all validity checks: block hash meets target (`verify_block_hash`) and
 difficulty bounds are valid (`verify_block_difficulty`).
 
----
-
 #### `verify_block_hash`
 
 ```cairo
@@ -299,8 +275,6 @@ pub fn verify_block_hash(header: BlockHeader) -> bool
 
 Checks that `sha256d(serialise(header)) <= bits_to_target(header.bits)`.
 
----
-
 #### `verify_block_difficulty`
 
 ```cairo
@@ -308,8 +282,6 @@ pub fn verify_block_difficulty(header: BlockHeader) -> bool
 ```
 
 Validates that `header.bits` encodes a target within the permitted network bounds.
-
----
 
 #### `bits_to_target`
 
@@ -321,8 +293,6 @@ Decodes the compact nBits field to a full 256-bit difficulty target.
 
 **Formula:** `target = mantissa * 256^(exponent - 3)` where the high byte of `bits`
 is the exponent and the lower three bytes are the mantissa.
-
----
 
 ### transaction
 
@@ -362,8 +332,6 @@ pub fn parse_transaction(raw_bytes: Array<u8>) -> Transaction
 
 Deserialises a raw Bitcoin transaction (legacy serialisation, no segwit witness).
 
----
-
 #### `verify_transaction_signature`
 
 ```cairo
@@ -377,8 +345,6 @@ pub fn verify_transaction_signature(
 Verifies that the scriptSig at `input_idx` correctly signs the SIGHASH_ALL preimage
 under `pubkey`.
 
----
-
 #### `compute_transaction_hash`
 
 ```cairo
@@ -388,8 +354,6 @@ pub fn compute_transaction_hash(tx: @Transaction) -> u256
 Returns the txid: `sha256d(serialise(tx))`. The result is big-endian (as displayed
 in block explorers).
 
----
-
 #### `verify_coinbase_transaction`
 
 ```cairo
@@ -398,8 +362,6 @@ pub fn verify_coinbase_transaction(tx: @Transaction) -> bool
 
 Returns `true` when the transaction has exactly one input with `prev_txid == 0`
 and `prev_index == 0xFFFFFFFF`.
-
----
 
 ### utxo
 
@@ -425,8 +387,6 @@ pub fn compute_outpoint_hash(txid: u256, vout: u32) -> u256
 
 Returns `sha256d(txid || vout)` as a unique outpoint identifier.
 
----
-
 #### `verify_utxo_ownership`
 
 ```cairo
@@ -434,8 +394,6 @@ pub fn verify_utxo_ownership(utxo: UTXO, pubkey: felt252) -> bool
 ```
 
 Returns `true` if `HASH160(pubkey)` matches the hash embedded in `utxo.script_pubkey`.
-
----
 
 ### script
 
@@ -451,8 +409,6 @@ Returns `true` if `script` is a well-formed P2PKH output script
 (`OP_DUP OP_HASH160 <hash> OP_EQUALVERIFY OP_CHECKSIG`) and the embedded
 hash matches `pubkey_hash`.
 
----
-
 #### `validate_p2sh_script`
 
 ```cairo
@@ -462,8 +418,6 @@ pub fn validate_p2sh_script(script: Array<u8>, redeem_script_hash: u256) -> bool
 Returns `true` if `script` is a well-formed P2SH output script
 (`OP_HASH160 <hash> OP_EQUAL`) and the embedded hash matches `redeem_script_hash`.
 
----
-
 #### `validate_p2wpkh_script`
 
 ```cairo
@@ -472,8 +426,6 @@ pub fn validate_p2wpkh_script(script: Array<u8>, pubkey_hash: u256) -> bool
 
 Returns `true` if `script` is a valid P2WPKH output (`OP_0 <20-byte hash>`)
 and the witness program matches `pubkey_hash`.
-
----
 
 ## Atomic Swap
 
@@ -514,8 +466,6 @@ Initiated → BtcLocked → EthLocked → Revealed → Settled
                                    Refunded
 ```
 
----
-
 ### swap_verifier
 
 **Module path:** `zk_bitcoin_verifier::atomic_swap::swap_verifier`
@@ -532,8 +482,6 @@ pub fn verify_btc_lock(
 
 Returns `true` if `current_block < refund_block` (the BTC HTLC has not yet expired).
 
----
-
 #### `verify_eth_lock`
 
 ```cairo
@@ -543,8 +491,6 @@ pub fn verify_eth_lock(eth_amount: u256, secret_hash: u256) -> bool
 Returns `true` if the ETH HTLC is correctly funded with `eth_amount` wei and
 locked with `secret_hash`.
 
----
-
 #### `verify_secret_reveal`
 
 ```cairo
@@ -553,8 +499,6 @@ pub fn verify_secret_reveal(secret: Array<u8>, secret_hash: u256) -> bool
 
 Returns `true` if `sha256(secret) == secret_hash`.
 
----
-
 #### `verify_swap_settlement`
 
 ```cairo
@@ -562,8 +506,6 @@ pub fn verify_swap_settlement(swap: @AtomicSwap, secret: Array<u8>) -> bool
 ```
 
 Returns `true` if the swap is in `EthLocked` state and `verify_secret_reveal` passes.
-
----
 
 #### `verify_atomic_swap`
 
