@@ -8,16 +8,12 @@
 A Cairo 2.x library for verifying Bitcoin block headers, transactions, and atomic swaps
 entirely on-chain on Starknet, using zero-knowledge proofs.
 
----
-
 ## Mission
 
 Enable trustless Bitcoin-to-Starknet interoperability by proving Bitcoin state
 (block hashes, transaction inclusion, UTXO ownership, HTLC conditions) inside
 Cairo's provable computation model — without relying on any trusted oracle or
 bridge custodian.
-
----
 
 ## Architecture
 
@@ -39,8 +35,6 @@ zk_bitcoin_verifier
     ├── swap_state   ──────────► SwapState enum + AtomicSwap struct
     └── swap_verifier ─────────► BTC lock / ETH lock / settlement proofs
 ```
-
----
 
 ## Quick Start
 
@@ -67,8 +61,6 @@ pip install pytest
 make py-test
 ```
 
----
-
 ## Module Overview
 
 | Module | Path | Status | Description |
@@ -83,8 +75,6 @@ make py-test
 | `script` | `src/bitcoin/script.cairo` | Stub | Script type validation |
 | `swap_state` | `src/atomic_swap/swap_state.cairo` | Complete | State machine types |
 | `swap_verifier` | `src/atomic_swap/swap_verifier.cairo` | Stub | HTLC condition proofs |
-
----
 
 ## API Reference Summary
 
@@ -139,8 +129,6 @@ pub fn verify_secret_reveal(secret: Array<u8>, secret_hash: u256) -> bool
 pub fn verify_atomic_swap(swap: @AtomicSwap) -> bool
 ```
 
----
-
 ## Contributing
 
 1. Fork the repository and create a feature branch from `develop`.
@@ -152,8 +140,6 @@ pub fn verify_atomic_swap(swap: @AtomicSwap) -> bool
 5. Follow [Conventional Commits](https://www.conventionalcommits.org/) for
    commit messages.
 
----
-
 ## License
 
-Copyright 2024 AMD. Licensed under the [Apache License, Version 2.0](../LICENSE).
+Copyright 2026 AMD. Licensed under the [Apache License, Version 2.0](../LICENSE).
