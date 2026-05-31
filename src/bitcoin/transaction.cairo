@@ -45,10 +45,7 @@ pub struct Transaction {
 pub fn parse_transaction(raw_bytes: Array<u8>) -> Transaction {
     // STUB: returns an empty transaction until implementation is complete.
     Transaction {
-        version: 0_u32,
-        inputs: ArrayTrait::new(),
-        outputs: ArrayTrait::new(),
-        locktime: 0_u32,
+        version: 0_u32, inputs: ArrayTrait::new(), outputs: ArrayTrait::new(), locktime: 0_u32,
     }
 }
 

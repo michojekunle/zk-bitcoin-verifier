@@ -1,7 +1,7 @@
 use zk_bitcoin_verifier::atomic_swap::swap_state::{AtomicSwap, SwapState};
 use zk_bitcoin_verifier::atomic_swap::swap_verifier::{
-    verify_btc_lock, verify_eth_lock, verify_secret_reveal, verify_swap_settlement,
-    verify_atomic_swap,
+    verify_atomic_swap, verify_btc_lock, verify_eth_lock, verify_secret_reveal,
+    verify_swap_settlement,
 };
 
 // ---------------------------------------------------------------------------
@@ -53,8 +53,7 @@ fn test_swap_state_settled_ne_refunded() {
 /// When current_block < refund_block the BTC HTLC is still live: should return true.
 #[test]
 fn test_verify_btc_lock_before_expiry() {
-    let secret_hash: u256 =
-        0x9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08_u256;
+    let secret_hash: u256 = 0x9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08_u256;
     // current_block is 100 blocks before refund
     assert!(verify_btc_lock(secret_hash, 800000_u32, 799900_u32));
 }
@@ -81,8 +80,7 @@ fn test_verify_btc_lock_after_expiry_fails() {
 #[test]
 fn test_verify_eth_lock_valid() {
     let eth_amount: u256 = 2000000000000000000_u256;
-    let secret_hash: u256 =
-        0x9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08_u256;
+    let secret_hash: u256 = 0x9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08_u256;
     assert!(verify_eth_lock(eth_amount, secret_hash));
 }
 
@@ -103,8 +101,7 @@ fn test_verify_eth_lock_zero_amount_fails() {
 fn test_verify_secret_reveal_correct_preimage() {
     // "test" in bytes: 0x74 0x65 0x73 0x74
     let secret = array![0x74_u8, 0x65_u8, 0x73_u8, 0x74_u8];
-    let secret_hash: u256 =
-        0x9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08_u256;
+    let secret_hash: u256 = 0x9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08_u256;
     assert!(verify_secret_reveal(secret, secret_hash));
 }
 
@@ -112,8 +109,7 @@ fn test_verify_secret_reveal_correct_preimage() {
 #[test]
 fn test_verify_secret_reveal_wrong_preimage_fails() {
     let wrong_secret = array![0x00_u8, 0x00_u8, 0x00_u8, 0x00_u8];
-    let secret_hash: u256 =
-        0x9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08_u256;
+    let secret_hash: u256 = 0x9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08_u256;
     assert!(!verify_secret_reveal(wrong_secret, secret_hash));
 }
 
