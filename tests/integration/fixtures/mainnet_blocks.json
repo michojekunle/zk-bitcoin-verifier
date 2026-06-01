@@ -1,5 +1,19 @@
 {
   "blocks": {
+    "0": {
+      "height": 0,
+      "hash": "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f",
+      "header_raw": "0100000000000000000000000000000000000000000000000000000000000000000000003ba3edfd7a7b12b27ac72c3e67768f617fc81bc3888a51323a9fb8aa4b1e5e4a29ab5f49ffff001d1dac2b7c",
+      "version": 1,
+      "prev_block_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "merkle_root": "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b",
+      "timestamp": 1231006505,
+      "bits": "0x1d00ffff",
+      "nonce": 2083236893,
+      "tx_count": 1,
+      "first_tx_hash": "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b",
+      "timestamp_prev_blocks": []
+    },
     "700000": {
       "height": 700000,
       "hash": "0000000000000000000590fc0f3eba193a278534220b2b37e9849e1a770ca959",

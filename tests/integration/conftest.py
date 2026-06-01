@@ -12,6 +12,11 @@ def mainnet_blocks():
 
 
 @pytest.fixture
+def genesis_block(mainnet_blocks):
+    return mainnet_blocks["blocks"]["0"]
+
+
+@pytest.fixture
 def test_vectors():
     with open(FIXTURES_DIR / "test_vectors.json") as f:
         return json.load(f)

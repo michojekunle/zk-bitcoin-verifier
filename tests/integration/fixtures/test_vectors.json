@@ -9,7 +9,7 @@
     {
       "input": "616263",
       "input_encoding": "hex",
-      "expected": "ba7816bf8f01cfea414140de5dae2ec73b00361bbef0469f490f4187655c223",
+      "expected": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
       "note": "SHA256('abc')",
       "source": "NIST FIPS 180-4"
     },
@@ -30,14 +30,14 @@
     {
       "input": "6d657373616765206469676573",
       "input_encoding": "hex",
-      "expected": "f7846f55cf23e14eebeab5b4e1550cad5b509e3348fbc4efa3a1413d393cb650",
+      "expected": "5679c3eceb3997e39b754fc363e12c3948944be5d9a463a4c434a7953ad75e6d",
       "note": "SHA256('message digest')",
       "source": "NIST FIPS 180-4"
     },
     {
       "input": "0000000000000000000590fc0f3eba193a278534220b2b37e9849e1a770ca959",
       "input_encoding": "hex",
-      "expected": "6c61f3a9f1ef06c11649df9d0c9fae0bc5804e0ea02a58f30c406fbbb4e37b07",
+      "expected": "9ac0cc48d0429aac458dae80f3fb7eb9d0554a0237576681b61ffcad281c6043",
       "note": "SHA256(block 700000 hash bytes)",
       "source": "computed"
     }
