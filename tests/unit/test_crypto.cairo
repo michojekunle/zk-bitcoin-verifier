@@ -17,14 +17,14 @@ fn test_sha256_nist_empty_input() {
 }
 
 /// NIST FIPS 180-4 vector: SHA-256("abc") =
-/// ba7816bf8f01cfea414140de5dae2ec73b00361bbef0469348423f656bd6e2d
+/// ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
 #[test]
 fn test_sha256_nist_abc() {
     let mut input: Array<u8> = ArrayTrait::new();
     input.append(0x61_u8); // 'a'
     input.append(0x62_u8); // 'b'
     input.append(0x63_u8); // 'c'
-    let expected: u256 = 0xba7816bf8f01cfea414140de5dae2ec73b00361bbef0469348423f656bd6e2d_u256;
+    let expected: u256 = 0xba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad_u256;
     assert_eq!(sha256(input), expected);
 }
 
@@ -85,7 +85,7 @@ fn test_sha256d_empty_input() {
 }
 
 /// SHA-256d("abc")
-/// Inner: ba7816bf8f01cfea414140de5dae2ec73b00361bbef0469348423f656bd6e2d
+/// Inner: ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
 /// Outer: 4f8b42c22dd3729b519ba6f68d2da7cc5b2d606d05daed5ad5128cc03e6c6358
 #[test]
 fn test_sha256d_abc() {
