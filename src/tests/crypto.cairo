@@ -126,16 +126,13 @@ fn test_merkle_verify_wrong_root_empty_proof() {
 }
 
 /// Two-leaf tree: merkle_verify(leaf0, [leaf1], sha256d(leaf0 || leaf1)) == true
-/// Uses Bitcoin genesis block txid as leaf0 for realism.
+/// root computed with Python: sha256d(leaf0_be_bytes || leaf1_be_bytes)
 #[test]
 fn test_merkle_verify_two_leaf_tree() {
-    // Genesis coinbase txid (little-endian as stored in header):
     let leaf0: u256 = 0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b_u256;
     let leaf1: u256 = 0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa_u256;
-    // root = sha256d(leaf0 || leaf1) — value determined by correct implementation
-    let root: u256 = 0x0000000000000000000000000000000000000000000000000000000000000000_u256;
+    let root: u256 = 0x19aefcab4819e5e3f676b5eb6aa81759b9d589af0fae770396d3b6a71a553fbc_u256;
     let proof = array![leaf1];
-    // Will fail until sha256d and merkle_verify are implemented
     assert!(merkle_verify(leaf0, proof, root));
 }
 

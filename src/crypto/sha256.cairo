@@ -39,7 +39,7 @@ pub fn sha256(input: Array<u8>) -> u256 {
     while block < num_blocks {
         state = compress(state, padded_span, block * 64);
         block += 1;
-    };
+    }
     words_to_u256(state)
 }
 
@@ -65,14 +65,8 @@ pub fn sha256d(input: Array<u8>) -> u256 {
 // ---------------------------------------------------------------------------
 
 const INITIAL_STATE: [u32; 8] = [
-    0x6a09e667_u32,
-    0xbb67ae85_u32,
-    0x3c6ef372_u32,
-    0xa54ff53a_u32,
-    0x510e527f_u32,
-    0x9b05688c_u32,
-    0x1f83d9ab_u32,
-    0x5be0cd19_u32,
+    0x6a09e667_u32, 0xbb67ae85_u32, 0x3c6ef372_u32, 0xa54ff53a_u32, 0x510e527f_u32, 0x9b05688c_u32,
+    0x1f83d9ab_u32, 0x5be0cd19_u32,
 ];
 
 // ---------------------------------------------------------------------------
@@ -100,7 +94,7 @@ fn pad_message(input: Array<u8>, msg_len: u32) -> Array<u8> {
     while i < zeros {
         padded.append(0_u8);
         i += 1;
-    };
+    }
 
     // Append 64-bit big-endian bit-length.
     // For messages up to 2^29 bytes the high 32 bits are zero.
@@ -120,14 +114,15 @@ fn pad_message(input: Array<u8>, msg_len: u32) -> Array<u8> {
 /// Processes one 512-bit (64-byte) block starting at `offset` in `bytes`,
 /// mixing it into the running hash `state`.
 fn compress(state: [u32; 8], bytes: Span<u8>, offset: u32) -> [u32; 8] {
-    // ── Message schedule W[0..63] ─────────────────────────────────────────
+    // ── Message schedule W[0..63]
+    // ─────────────────────────────────────────
     let mut w: Array<u32> = array![];
     let mut i: u32 = 0;
     // W[0..15] come directly from the block (big-endian u32 words).
     while i < 16 {
         w.append(read_u32_be(bytes, offset + i * 4));
         i += 1;
-    };
+    }
     // W[16..63] are computed from earlier schedule words.
     let mut i: u32 = 16;
     while i < 64 {
@@ -139,9 +134,10 @@ fn compress(state: [u32; 8], bytes: Span<u8>, offset: u32) -> [u32; 8] {
         let s1 = rotr32(w2, 17) ^ rotr32(w2, 19) ^ shr32(w2, 10);
         w.append(add32(add32(add32(s1, w7), s0), w16));
         i += 1;
-    };
+    }
 
-    // ── Working variables initialised from current state ──────────────────
+    // ── Working variables initialised from current state
+    // ──────────────────
     let [h0, h1, h2, h3, h4, h5, h6, h7] = state;
     let mut a: u32 = h0;
     let mut b: u32 = h1;
@@ -152,7 +148,8 @@ fn compress(state: [u32; 8], bytes: Span<u8>, offset: u32) -> [u32; 8] {
     let mut g: u32 = h6;
     let mut hv: u32 = h7; // 'h' is a reserved-ish name; use 'hv'
 
-    // ── 64 rounds ─────────────────────────────────────────────────────────
+    // ── 64 rounds
+    // ─────────────────────────────────────────────────────────
     let mut i: u32 = 0;
     while i < 64 {
         let sigma1 = rotr32(e, 6) ^ rotr32(e, 11) ^ rotr32(e, 25);
@@ -173,16 +170,11 @@ fn compress(state: [u32; 8], bytes: Span<u8>, offset: u32) -> [u32; 8] {
         i += 1;
     };
 
-    // ── Add compressed chunk to current hash value ────────────────────────
+    // ── Add compressed chunk to current hash value
+    // ────────────────────────
     [
-        add32(h0, a),
-        add32(h1, b),
-        add32(h2, c),
-        add32(h3, d),
-        add32(h4, e),
-        add32(h5, f),
-        add32(h6, g),
-        add32(h7, hv),
+        add32(h0, a), add32(h1, b), add32(h2, c), add32(h3, d), add32(h4, e), add32(h5, f),
+        add32(h6, g), add32(h7, hv),
     ]
 }
 
@@ -318,8 +310,21 @@ fn append_u32_be(ref arr: Array<u8>, val: u32) {
     arr.append((val & 0xff_u32).try_into().unwrap());
 }
 
+/// Hashes the concatenation of two 32-byte values with SHA-256d.
+/// Used by the Merkle tree implementation.
+pub fn sha256d_pair(left: u256, right: u256) -> u256 {
+    let mut bytes: Array<u8> = u256_to_bytes(left);
+    let right_bytes = u256_to_bytes(right);
+    let mut i: u32 = 0;
+    while i < right_bytes.len() {
+        bytes.append(*right_bytes.at(i));
+        i += 1;
+    }
+    sha256d(bytes)
+}
+
 /// Converts a `u256` to its 32-byte big-endian representation.
-fn u256_to_bytes(val: u256) -> Array<u8> {
+pub fn u256_to_bytes(val: u256) -> Array<u8> {
     let mut bytes: Array<u8> = array![];
     // High 128 bits → 16 bytes.
     append_u128_be(ref bytes, val.high);
