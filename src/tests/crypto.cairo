@@ -170,16 +170,17 @@ fn test_merkle_root_empty_returns_zero() {
 // ---------------------------------------------------------------------------
 
 /// A known-good ECDSA signature over secp256k1 must verify successfully.
-/// Test vector from Bitcoin's test suite (simplified representation).
+/// Vector: private key d=1, public key Q=G, nonce k=2.
+/// r = (2*G).x mod N, s = k^-1 * (h + r*d) mod N.
 #[test]
 fn test_secp256k1_verify_known_valid_signature() {
-    // message hash: SHA-256("test message")
     let message_hash: u256 =
         0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b_u256;
     let sig = Signature {
-        r: 0x79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798_u256,
-        s: 0x483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8_u256,
+        r: 0xc6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5_u256,
+        s: 0x88314eeff6530e53b14b657bac6e22abdf038259658e02112edf429a2d2f2110_u256,
     };
+    // public key = G (private key = 1)
     let pubkey = Point {
         x: 0x79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798_u256,
         y: 0x483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8_u256,
@@ -205,8 +206,8 @@ fn test_secp256k1_verify_zero_signature_fails() {
 fn test_secp256k1_verify_wrong_message_fails() {
     let wrong_hash: u256 = 0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef_u256;
     let sig = Signature {
-        r: 0x79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798_u256,
-        s: 0x483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8_u256,
+        r: 0xc6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5_u256,
+        s: 0x88314eeff6530e53b14b657bac6e22abdf038259658e02112edf429a2d2f2110_u256,
     };
     let pubkey = Point {
         x: 0x79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798_u256,
@@ -221,8 +222,8 @@ fn test_secp256k1_verify_wrong_pubkey_fails() {
     let message_hash: u256 =
         0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b_u256;
     let sig = Signature {
-        r: 0x79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798_u256,
-        s: 0x483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8_u256,
+        r: 0xc6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5_u256,
+        s: 0x88314eeff6530e53b14b657bac6e22abdf038259658e02112edf429a2d2f2110_u256,
     };
     let wrong_pubkey = Point { x: 0x1111_u256, y: 0x2222_u256 };
     assert!(!secp256k1_verify_signature(message_hash, sig, wrong_pubkey));
