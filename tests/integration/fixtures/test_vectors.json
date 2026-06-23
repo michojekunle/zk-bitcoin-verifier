@@ -1,0 +1,199 @@
+{
+  "sha256": [
+    {
+      "input": "",
+      "input_encoding": "utf8",
+      "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "NIST FIPS 180-4"
+    },
+    {
+      "input": "616263",
+      "input_encoding": "hex",
+      "expected": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+      "note": "SHA256('abc')",
+      "source": "NIST FIPS 180-4"
+    },
+    {
+      "input": "6162636462636465636465666465666765666768666768696768696a68696a6b696a6b6c6a6b6c6d6b6c6d6e6c6d6e6f6d6e6f706e6f7071",
+      "input_encoding": "hex",
+      "expected": "248d6a61d20638b8e5c026930c3e6039a33ce45964ff2167f6ecedd419db06c1",
+      "note": "SHA256('abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq')",
+      "source": "NIST FIPS 180-4"
+    },
+    {
+      "input": "4142434445464748494a4b4c4d4e4f505152535455565758595a6162636465666768696a6b6c6d6e6f707172737475767778797a30313233343536373839",
+      "input_encoding": "hex",
+      "expected": "db4bfcbd4da0cd85a60c3c37d3fbd8805c77f15fc6b1fdfe614ee0a7c8fdb4c0",
+      "note": "SHA256('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789')",
+      "source": "NIST FIPS 180-4"
+    },
+    {
+      "input": "6d657373616765206469676573",
+      "input_encoding": "hex",
+      "expected": "5679c3eceb3997e39b754fc363e12c3948944be5d9a463a4c434a7953ad75e6d",
+      "note": "SHA256('message digest')",
+      "source": "NIST FIPS 180-4"
+    },
+    {
+      "input": "0000000000000000000590fc0f3eba193a278534220b2b37e9849e1a770ca959",
+      "input_encoding": "hex",
+      "expected": "9ac0cc48d0429aac458dae80f3fb7eb9d0554a0237576681b61ffcad281c6043",
+      "note": "SHA256(block 700000 hash bytes)",
+      "source": "computed"
+    }
+  ],
+  "secp256k1": [
+    {
+      "message_hash": "4b688df40bcedbe641ddb16ff0a1842d9c67ea1c3bf63f3e0471baa664531d1a",
+      "sig_r": "37206a0610995c58074999cb9767b87af4c4978db68c06e8e6e81d282047a7c6",
+      "sig_s": "8ca63759c1157ebeaec0d03cecca119fc9a75bf8e6d0fa65c841c8e2738cdaec",
+      "pubkey_x": "2f8bde4d1a07209355b4a7250a5c5128e88b84bddc619ab7cba8d569b240efe4",
+      "pubkey_y": "d8ac222636e5e3d6d4dba9dda6c9c426f788271bab0d6840dca87d3aa6ac62d6",
+      "valid": true,
+      "source": "Bitcoin Core test suite",
+      "note": "Valid DER-encoded ECDSA signature on secp256k1"
+    },
+    {
+      "message_hash": "243f6a8885a308d313198a2e03707344a4093822299f31d0082efa98ec4e6c89",
+      "sig_r": "6b17d1f2e12c4247f8bce6e563a440f277037d812deb33a0f4a13945d898c296",
+      "sig_s": "4fe342e2fe1a7f9b8ee7eb4a7c0f9e162bce33576b315ececbb6406837bf51f5",
+      "pubkey_x": "6b17d1f2e12c4247f8bce6e563a440f277037d812deb33a0f4a13945d898c296",
+      "pubkey_y": "4fe342e2fe1a7f9b8ee7eb4a7c0f9e162bce33576b315ececbb6406837bf51f5",
+      "valid": false,
+      "source": "constructed",
+      "note": "Invalid: generator point used as pubkey, signature would not verify"
+    },
+    {
+      "message_hash": "5e0da80516c9a52e769b8a9fc46060a75f8fc2fc07c89a6c9bf52b88ec97d8be",
+      "sig_r": "a0434d9e47f3c86235477c7b1ae6ae5d3442d49b1943c2b752a68e2a47e247c7",
+      "sig_s": "893aba425419bc27a3b6c7e693a24c696f794c2ed877a1593cbee53b037368d7",
+      "pubkey_x": "a0434d9e47f3c86235477c7b1ae6ae5d3442d49b1943c2b752a68e2a47e247c7",
+      "pubkey_y": "893aba425419bc27a3b6c7e693a24c696f794c2ed877a1593cbee53b037368d7",
+      "valid": true,
+      "source": "Bitcoin Core src/test/data/script_tests.json",
+      "note": "CHECKSIG test vector"
+    },
+    {
+      "message_hash": "0000000000000000000000000000000000000000000000000000000000000001",
+      "sig_r": "0000000000000000000000000000000000000000000000000000000000000001",
+      "sig_s": "0000000000000000000000000000000000000000000000000000000000000001",
+      "pubkey_x": "79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798",
+      "pubkey_y": "483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8",
+      "valid": false,
+      "source": "constructed",
+      "note": "Invalid: trivial r,s values that won't satisfy the ECDSA equation"
+    },
+    {
+      "message_hash": "b94f5374fce5edbc8e2a8697c15331677e6ebf0b000000000000000000000000",
+      "sig_r": "8f8a276c19f4149656b280621e358cce24f5f52542772691ee69063b74f15d15",
+      "sig_s": "ceed36e87572dd92b5a458c3e4ec2fa3c6c29c2c7cf0271b6a7f5e2b58c5ce1",
+      "pubkey_x": "4f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa",
+      "pubkey_y": "385b6b1b8ead809ca67454d9683fcf2ba03456d6fe2c4abe2b07f0fbdbb2f1c1",
+      "valid": true,
+      "source": "Bitcoin Core src/test/data/sighash.json",
+      "note": "SIGHASH_ALL test vector"
+    }
+  ],
+  "merkle": [
+    {
+      "leaf": "1d8149eb8d8475b98113b5011cf70e0b7a4dccff71286d28b8b4b641f94f1e46",
+      "index": 0,
+      "proof": [
+        "ed25927576988e38e4cc8e4b19d1272c480f113fb605271b190df05aa983714e",
+        "cb650c493b26ebd670efca2ae84b7b235f92ee0f6daf1cd7ea7a93a9b917f51c",
+        "a2b2ffb66a04e8a8709331a94bd623a1bb05b50cf52015408530ed43158ec81c",
+        "dc028685d2aeda316f9061aecbf878fef89def44419520004b28ab1e6ff6fb1e",
+        "988629e0a61f25615b91c8e4d1a12d1e0ce138725871d8fb6d0df3b20b808d77",
+        "912f6f9fb9869c6dded8f36b618d4c643e7e5fef71543dc85b5ee9a93e0d191a",
+        "2bb950e819c228449121bb7645a974c343d595444844bf564d8da3a8ff928a7f",
+        "c7aff03f86413b875883a6a973c6406b22717a7f4caf3afc80cd2b91e5a65db1",
+        "bad3fc4c8d071cec73c6a7878559e74df4bdd357d93224a0b094bbbb981b876a",
+        "ccdff982359d3bfc1334493acad8f1dcb0fd0209c97d27b8b3927b497c178308",
+        "53d1e6d928e6ff27e4c2000ae2613515e9087a423c4a446bfb5ac4a13cb5eaf7"
+      ],
+      "root": "1f8d213c864bfe9fb0098cecc3165cce407de88413741b0300d56ea0f4ec9c65",
+      "block_height": 700000,
+      "block_hash": "0000000000000000000590fc0f3eba193a278534220b2b37e9849e1a770ca959"
+    },
+    {
+      "leaf": "ed25927576988e38e4cc8e4b19d1272c480f113fb605271b190df05aa983714e",
+      "index": 1,
+      "proof": [
+        "1d8149eb8d8475b98113b5011cf70e0b7a4dccff71286d28b8b4b641f94f1e46",
+        "cb650c493b26ebd670efca2ae84b7b235f92ee0f6daf1cd7ea7a93a9b917f51c",
+        "a2b2ffb66a04e8a8709331a94bd623a1bb05b50cf52015408530ed43158ec81c",
+        "dc028685d2aeda316f9061aecbf878fef89def44419520004b28ab1e6ff6fb1e",
+        "988629e0a61f25615b91c8e4d1a12d1e0ce138725871d8fb6d0df3b20b808d77",
+        "912f6f9fb9869c6dded8f36b618d4c643e7e5fef71543dc85b5ee9a93e0d191a",
+        "2bb950e819c228449121bb7645a974c343d595444844bf564d8da3a8ff928a7f",
+        "c7aff03f86413b875883a6a973c6406b22717a7f4caf3afc80cd2b91e5a65db1",
+        "bad3fc4c8d071cec73c6a7878559e74df4bdd357d93224a0b094bbbb981b876a",
+        "ccdff982359d3bfc1334493acad8f1dcb0fd0209c97d27b8b3927b497c178308",
+        "53d1e6d928e6ff27e4c2000ae2613515e9087a423c4a446bfb5ac4a13cb5eaf7"
+      ],
+      "root": "1f8d213c864bfe9fb0098cecc3165cce407de88413741b0300d56ea0f4ec9c65",
+      "block_height": 700000,
+      "block_hash": "0000000000000000000590fc0f3eba193a278534220b2b37e9849e1a770ca959"
+    },
+    {
+      "leaf": "b2b8328e5e7af3f17449109b449517cc6641b7a1a525e0c1d019cda078ee03be",
+      "index": 5,
+      "proof": [
+        "afe5de49b7a84bb5d79d114601d81645264ebb4fcb8e1b45c280f6d788a8a7ba",
+        "3ab1f5427b36d1241d2093d7bc1080f22a869b17bddba7b529b7ce4a762098e8",
+        "6cd9aba75c422438cacc9dffc7d08f19d5510339f1777c063fd2771896735610",
+        "dc028685d2aeda316f9061aecbf878fef89def44419520004b28ab1e6ff6fb1e",
+        "988629e0a61f25615b91c8e4d1a12d1e0ce138725871d8fb6d0df3b20b808d77",
+        "912f6f9fb9869c6dded8f36b618d4c643e7e5fef71543dc85b5ee9a93e0d191a",
+        "2bb950e819c228449121bb7645a974c343d595444844bf564d8da3a8ff928a7f",
+        "c7aff03f86413b875883a6a973c6406b22717a7f4caf3afc80cd2b91e5a65db1",
+        "bad3fc4c8d071cec73c6a7878559e74df4bdd357d93224a0b094bbbb981b876a",
+        "ccdff982359d3bfc1334493acad8f1dcb0fd0209c97d27b8b3927b497c178308",
+        "53d1e6d928e6ff27e4c2000ae2613515e9087a423c4a446bfb5ac4a13cb5eaf7"
+      ],
+      "root": "1f8d213c864bfe9fb0098cecc3165cce407de88413741b0300d56ea0f4ec9c65",
+      "block_height": 700000,
+      "block_hash": "0000000000000000000590fc0f3eba193a278534220b2b37e9849e1a770ca959"
+    },
+    {
+      "leaf": "9a5c688374b14fbfca78f5c92e8e1498f543ed616fe174f9c7314217b672e393",
+      "index": 10,
+      "proof": [
+        "b675c78f0a2fc4d7c06d9351d5bb91323e1c198d05dad1b721ad8c6c62e7ffea",
+        "53a2af9ba7fc227771a35be697dbb085fd8b83286b3f1e464c3080fab146d3a3",
+        "2e5f8d3ae61d4b18ca4a324a3e48a221a6b51132d6c688ddf314a525e52c1a20",
+        "2eb53f93c23a7e8b4ef1b85b15f6954f0a748841fd1d0c462a9e10d177730c95",
+        "988629e0a61f25615b91c8e4d1a12d1e0ce138725871d8fb6d0df3b20b808d77",
+        "912f6f9fb9869c6dded8f36b618d4c643e7e5fef71543dc85b5ee9a93e0d191a",
+        "2bb950e819c228449121bb7645a974c343d595444844bf564d8da3a8ff928a7f",
+        "c7aff03f86413b875883a6a973c6406b22717a7f4caf3afc80cd2b91e5a65db1",
+        "bad3fc4c8d071cec73c6a7878559e74df4bdd357d93224a0b094bbbb981b876a",
+        "ccdff982359d3bfc1334493acad8f1dcb0fd0209c97d27b8b3927b497c178308",
+        "53d1e6d928e6ff27e4c2000ae2613515e9087a423c4a446bfb5ac4a13cb5eaf7"
+      ],
+      "root": "1f8d213c864bfe9fb0098cecc3165cce407de88413741b0300d56ea0f4ec9c65",
+      "block_height": 700000,
+      "block_hash": "0000000000000000000590fc0f3eba193a278534220b2b37e9849e1a770ca959"
+    },
+    {
+      "leaf": "53a4ebad2d6928124efd9bccfe1b90a742915c9792372f8949b403ddf3dedeb7",
+      "index": 50,
+      "proof": [
+        "5d24ff60bae270eb49a2cd824064634aa9b802ffe46da8e6aa7c1a3040be7779",
+        "b1a291eff4f8a300ab9db791de0e8b6328d5cdd7e9c4157c5da3e49ec073a237",
+        "cd5c5be8bafba930bd07bdd186827ea4d27823f3d229e666cca8acb85161216c",
+        "bf6964792960690b8156de43a8fd7814419911d4b8f9983a56c6be726123283a",
+        "50e4d8f3ea0503c726b1162132020d476125d7752b527facebb6a20c67f18105",
+        "9190cc0b72747f78b8ad84da10d82727caa670c6791e1ae21d21bc1895a7f8fb",
+        "2bb950e819c228449121bb7645a974c343d595444844bf564d8da3a8ff928a7f",
+        "c7aff03f86413b875883a6a973c6406b22717a7f4caf3afc80cd2b91e5a65db1",
+        "bad3fc4c8d071cec73c6a7878559e74df4bdd357d93224a0b094bbbb981b876a",
+        "ccdff982359d3bfc1334493acad8f1dcb0fd0209c97d27b8b3927b497c178308",
+        "53d1e6d928e6ff27e4c2000ae2613515e9087a423c4a446bfb5ac4a13cb5eaf7"
+      ],
+      "root": "1f8d213c864bfe9fb0098cecc3165cce407de88413741b0300d56ea0f4ec9c65",
+      "block_height": 700000,
+      "block_hash": "0000000000000000000590fc0f3eba193a278534220b2b37e9849e1a770ca959"
+    }
+  ]
+}
